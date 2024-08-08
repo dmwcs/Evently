@@ -54,22 +54,15 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === 'user.created') {
-    const {
-      id = 'default_id',
-      email_addresses,
-      image_url = 'default_image_url',
-      first_name = 'default_first_name',
-      last_name = 'default_last_name',
-      username = 'default_username',
-    } = evt.data;
+    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
 
     const user = {
       clerkId: id!,
       email: email_addresses[0].email_address,
-      username: username || 'default_username', // 再次确保有默认值
-      firstName: first_name || '',
-      lastName: last_name || '',
-      photo: image_url || '',
+      username: username,
+      firstName: first_name,
+      lastName: last_name,
+      photo: image_url,
     };
 
     console.log('User object to be created:', user);
@@ -77,7 +70,7 @@ export async function POST(req: Request) {
     const newUser = await createUser(user);
 
     if (newUser) {
-      await clerkClient.users.updateUserMetadata(id!, {
+      await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
         },
