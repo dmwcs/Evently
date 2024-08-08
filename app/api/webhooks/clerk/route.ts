@@ -55,22 +55,24 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.created') {
     const {
-      id = '111',
+      id = 'default_id',
       email_addresses,
-      image_url = '111',
-      first_name = '111',
-      last_name = '111',
-      username = '111',
+      image_url = 'default_image_url',
+      first_name = 'default_first_name',
+      last_name = 'default_last_name',
+      username = 'default_username',
     } = evt.data;
 
     const user = {
       clerkId: id!,
       email: email_addresses[0].email_address,
-      username: username!,
-      firstName: first_name!,
-      lastName: last_name!,
-      photo: image_url,
+      username: username || 'default_username', // 再次确保有默认值
+      firstName: first_name || '',
+      lastName: last_name || '',
+      photo: image_url || '',
     };
+
+    console.log('User object to be created:', user);
 
     const newUser = await createUser(user);
 
