@@ -33,10 +33,9 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [newCategory, setNewCategory] = useState('');
 
-  const handleAddCategory = () => {
-    createCategory({ categoryName: newCategory.trim() }).then((category) => {
-      setCategories((prevState) => [...prevState, category]);
-    });
+  const handleAddCategory = async () => {
+    const category = await createCategory({ categoryName: newCategory.trim() });
+    await setCategories((prevState) => [...prevState, category]);
   };
 
   useEffect(() => {
@@ -48,7 +47,8 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   }, []);
 
   return (
-    <Select onValueChange={onChangeHandler} defaultValue={value}>
+    //这里default value 属性我去掉了
+    <Select onValueChange={onChangeHandler}>
       <SelectTrigger className="select-field">
         <SelectValue placeholder="Category" />
       </SelectTrigger>
