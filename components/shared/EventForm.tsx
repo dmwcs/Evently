@@ -41,8 +41,6 @@ const EventForm = ({ userId, type }: EventFormProps) => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof eventFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -214,9 +212,11 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                       className="filter-grey"
                     />
                     <Input
+                      disabled={form.watch('isFree')}
                       type="number"
                       placeholder="Price"
                       {...field}
+                      value={form.watch('isFree') ? 0 : field.value}
                       className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                     <FormField
