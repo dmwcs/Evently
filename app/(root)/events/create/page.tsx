@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import EventForm from '@/components/shared/EventForm';
 
 const CreateEvent = () => {
-  const { sessionClaims }: { userId: string | null } = auth();
+  const { sessionClaims } = auth();
   const userId = sessionClaims?.dbId;
 
   return (
