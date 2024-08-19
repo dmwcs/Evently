@@ -3,10 +3,22 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Collection from '@/components/shared/Collection';
 import { getAllEvents } from '@/lib/actions/event.actions';
+import Search from '@/components/shared/Search';
+import { SearchParamProps } from '@/types';
+import CategoryFilter from '@/components/shared/CategoryFilter';
 
-export default async function Home() {
-  const events = await getAllEvents({ query: '', category: '', page: 1, limit: 6 });
-  console.log(events);
+export default async function Home({ searchParams }: SearchParamProps) {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || '';
+  const category = (searchParams?.category as string) || '';
+
+  const events = await getAllEvents({
+    query: searchText,
+    category: category,
+    page: page,
+    limit: 6,
+  });
+  console.log('a', events);
 
   return (
     <>
@@ -37,7 +49,10 @@ export default async function Home() {
           Trust by <br /> Thousands of Events
         </h2>
 
-        <div className="flex w-full flex-col gap-5 md:flex-row">serch categoryfilter</div>
+        <div className="flex w-full flex-col gap-5 md:flex-row">
+          <Search />
+          <CategoryFilter />
+        </div>
         <Collection
           data={events?.data}
           emptyTitle="No Events Found"
