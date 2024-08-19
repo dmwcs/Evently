@@ -54,7 +54,7 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 md:gap-3">
                 <Image src="/assets/icons/calendar.svg" alt="calendar" width={32} height={32} />
-                <div className="p-medium-16 lg:p-regular-20 flex flex-wrap items-center">
+                <div className="p-medium-16 lg:p-regular-20 flex flex-wrap items-center gap-x-5">
                   <p>
                     {formatDateTime(event.startDateTime).dateOnly} -{' '}
                     {formatDateTime(event.startDateTime).timeOnly}
