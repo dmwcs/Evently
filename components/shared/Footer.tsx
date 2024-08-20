@@ -6,10 +6,10 @@ const Footer = () => {
     <div className="border-t">
       <div className="flex-between wrapper flex-col text-center sm:flex-row">
         <Link href="/">
-          <Image src="/assets/images/logo.svg" alt="logo" width={128} height={38}></Image>
+          <Image src="/assets/images/logo.png" alt="logo" width={100} height={38}></Image>
         </Link>
 
-        <p>2023 Evently. All Rights reserved.</p>
+        <p>2023 Meetly. All Rights reserved.</p>
       </div>
     </div>
   );
