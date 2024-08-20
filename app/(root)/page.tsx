@@ -29,8 +29,8 @@ export default async function Home({ searchParams }: SearchParamProps) {
               Organize and Enjoy: Your Events, Powered by Our Platform!
             </h1>
             <p className="p-regular-18 md:p-regular-20 lg:p-regular-24">
-              Join our global community to book sessions and gain insights from over 3168 mentors at
-              leading companies.
+              Join our community to book sessions and participate in thousands of amazing events
+              worldwide.
             </p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="#events">Explore Now</Link>
